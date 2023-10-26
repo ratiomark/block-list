@@ -18,11 +18,11 @@ export class AccountService {
 	}
 
 	async getAccount(userId: number) {
-		return this.db.account.findFirstOrThrow({ where: { ownerId: userId } }) // выброс ошибки если не найдет аккаунт
+		return await this.db.account.findFirstOrThrow({ where: { ownerId: userId } }) // выброс ошибки если не найдет аккаунт
 	}
 
 	async patchAccount(userId: number, patch: PatchAccountDto) {
-		return this.db.account.update({
+		return await this.db.account.update({
 			where: { ownerId: userId },
 			data: { ...patch }
 		})

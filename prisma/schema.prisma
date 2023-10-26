@@ -16,7 +16,8 @@ model User {
   hash  String
   salt  String
 
-  account Account?
+  account   Account?
+  blockList BlockList?
 }
 
 // аккаунт содержить инфу более бизнесового(прикладного уровня)
@@ -27,4 +28,31 @@ model Account {
   owner   User @relation(fields: [ownerId], references: [id])
 
   isBlockingEnabled Boolean
+}
+
+// будет хранить список блокировок. Буду хранить его в User, посколько BlockList это отдельная бизнес сущность и так будет удобнее работать со всем списком сразу
+model BlockList {
+  id Int @id @default(autoincrement())
+
+  ownerId Int  @unique
+  owner   User @relation(fields: [ownerId], references: [id])
+
+  items BlockItem[]
+}
+
+// будет описывать элемент списка блокировки
+model BlockItem {
+  id Int @id @default(autoincrement())
+
+  blockListId Int       @unique
+  blockList   BlockList @relation(fields: [blockListId], references: [id]) 
+
+  type BlockItemType
+  createdAt DateTime @default(now())
+}
+
+// можно блочить сайт или по ключевому слову на сайте(спорт, новости и т.д)
+enum BlockItemType {
+  Website
+  KeyWord
 }
