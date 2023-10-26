@@ -1,5 +1,5 @@
 import { Injectable, } from '@nestjs/common';
-import { AccountDto, PatchAccountDto } from './dto';
+import { PatchAccountDto } from './dto';
 import { DbService } from 'src/db/db.service';
 
 @Injectable()
@@ -8,7 +8,8 @@ export class AccountService {
 	constructor(private db: DbService) { }
 
 	async create(userId: number) {
-		this.db.account.create({
+		console.log('Создаю аккаунт')
+		await this.db.account.create({
 			data: {
 				ownerId: userId,
 				isBlockingEnabled: false
