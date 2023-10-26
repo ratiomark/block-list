@@ -48,6 +48,8 @@ model BlockItem {
   blockList   BlockList @relation(fields: [blockListId], references: [id]) 
 
   type BlockItemType
+  data String
+
   createdAt DateTime @default(now())
 }
 

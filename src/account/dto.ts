@@ -16,7 +16,7 @@ export class AccountDto {
 
 
 export class PatchAccountDto {
-	@ApiProperty()
+	@ApiProperty({required: false})
 	@IsBoolean()
 	@IsOptional() // нужно использовать декоратор, потому что как в случае с возвращаемыми ответами, nest не может использовать тип TS напрямую, а тут не может понять, что это опциональное поле
 	isBlockingEnabled?: boolean
