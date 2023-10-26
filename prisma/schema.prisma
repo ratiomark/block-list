@@ -7,10 +7,25 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:1@localhost:5432/postgres?schema=public"
+  url      = env("DATABASE_URL")
 }
+
 
 model User {
   id    Int    @id @default(autoincrement())
   email String @unique
+  hash  String
+  salt  String
+
+  account Account?
+}
+
+// аккаунт содержить инфу более бизнесового(прикладного уровня)
+model Account {
+  id    Int    @id @default(autoincrement())
+
+  ownerId Int @unique // нужно указывать если идет связь 1 к 1
+  owner User @relation(fields: [ownerId], references: [id])
+
+  isBlockingEnabled Boolean
 }
