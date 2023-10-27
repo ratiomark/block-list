@@ -5,6 +5,7 @@ import { authControllerGetSessionInfo, authControllerSignIn } from '@/shared/api
 import { useQuery } from '@tanstack/react-query'
 import { UiButton } from '@/shared/ui/ui-button'
 import { UiTextField } from '@/shared/ui/ui-text-field'
+import { UiSelectField } from '@/shared/ui/ui-select-field'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +28,10 @@ export function HomePage() {
 		>
 			{/* {data?.email} */}
 			<UiTextField label='Email' />
+			<UiSelectField options={[
+				{ value: 'first', label: 'First'},
+				{ value: 'second', label: 'second'},
+			]} />
 			<UiTextField label='Email' />
 			{/* <UiTextField label='Email' error='There is important error' /> */}
 			<UiTextField label='Email' error='There is important error' inputProps={{
