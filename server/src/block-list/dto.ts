@@ -12,7 +12,7 @@ export class BlockItemDto {
 	@ApiProperty({
 		enum: [
 			$Enums.BlockItemType.KeyWord,
-			$Enums.BlockItemType.Website
+			$Enums.BlockItemType.Website,
 		]
 	})
 	type: $Enums.BlockItemType

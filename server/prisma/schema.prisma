@@ -44,8 +44,8 @@ model BlockList {
 model BlockItem {
   id Int @id @default(autoincrement())
 
-  blockListId Int       @unique
-  blockList   BlockList @relation(fields: [blockListId], references: [id]) 
+  blockListId Int
+  blockList   BlockList @relation(fields: [blockListId], references: [id])
 
   type BlockItemType
   data String

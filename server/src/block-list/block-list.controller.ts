@@ -34,7 +34,7 @@ export class BlockListController {
 	@ApiOkResponse({ type: BlockItemDto })
 	async deleteBlockItem(
 		// ParseIntPipe преобразует строку в число
-		@Param(ParseIntPipe) id: number,
+		@Param('id', ParseIntPipe) id: number,
 		@SessionInfo() session: GetSessionInfoDto
 	): Promise<BlockItemDto> {
 		return await this.blockListService.deleteBlockListItem(id, session.id)
