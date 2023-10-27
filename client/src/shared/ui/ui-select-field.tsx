@@ -16,7 +16,7 @@ export type UiSelectFieldProps = {
 }
 
 
-export function UiSelectField({ className, label, error, selectProps , options}: UiSelectFieldProps) {
+export function UiSelectField({ className, label, error, selectProps, options }: UiSelectFieldProps) {
 	const id = useId()
 	return (
 		<div className={clsx(className, "flex flex-col gap-1")}>
@@ -30,7 +30,7 @@ export function UiSelectField({ className, label, error, selectProps , options}:
 				id={id}
 				className={clsx(
 					selectProps?.className,
-					'rounded border border-slate-300 focus:border-teal-600 px-2 h-10 outline-none'
+					'rounded border border-slate-300 cursor-pointer focus:border-teal-600 px-2 h-10 outline-none'
 				)}
 			>
 				{options?.map((option, i) => (
