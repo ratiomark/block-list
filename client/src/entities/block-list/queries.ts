@@ -3,7 +3,9 @@ import {
 	blockListControllerDeleteBlockItem,
 	blockListControllerGetBlockList,
 } from '@/shared/api/generated'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+	useMutation, useQuery, useQueryClient,
+} from '@tanstack/react-query'
 
 const QUERY_BLOCK_LIST_KEY = ['block-list']
 
@@ -11,6 +13,7 @@ export function useBlockListQuery(q?: string) {
 	return useQuery({
 		queryFn: () => blockListControllerGetBlockList({ q }),
 		queryKey: QUERY_BLOCK_LIST_KEY.concat(q || ''),
+		placeholderData: (previousData, previousQuery) => previousData,
 	})
 }
 export function useAddBlockListMutation(q?: string) {
