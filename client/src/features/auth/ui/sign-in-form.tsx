@@ -1,11 +1,11 @@
 import { UiButton } from '@/shared/ui/ui-button'
 import { UiTextField } from '@/shared/ui/ui-text-field'
-import { useSignUpForm } from '../model/use-sign-up-form'
-import { UiLink } from '@/shared/ui/ui-link'
+import { useSignInForm } from '../model/use-sign-in-form'
 import { ROUTES } from '@/shared/constants/routes'
+import { UiLink } from '@/shared/ui/ui-link'
 
-export function SignUpForm() {
-	const { handleSubmit, isLoading, register, errorMessage } = useSignUpForm()
+export function SignInForm() {
+	const { handleSubmit, isLoading, register, errorMessage } = useSignInForm()
 
 	return (
 		<form className='flex flex-col gap-8' onSubmit={handleSubmit}>
@@ -26,12 +26,12 @@ export function SignUpForm() {
 					// value: setPassword,
 				}}
 			/>
-			<UiButton disabled={isLoading}>Sign Up</UiButton>
+			<UiButton disabled={isLoading}>Sign In</UiButton>
 			<UiLink
-				href={ROUTES.signIn}
+				href={ROUTES.signUp}
 				text={
 					<p>
-						Already have an account? <strong>Sign In.</strong>
+						Don't have an account? <strong>Sign Up.</strong>
 					</p>
 				}
 			/>

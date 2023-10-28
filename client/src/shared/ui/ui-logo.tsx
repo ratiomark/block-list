@@ -4,7 +4,7 @@ import { text } from 'stream/consumers'
 export function UiLogo({ className }: { className?: string }) {
 	return (
 		<div className={clsx(className, 'flex items-center gap-2 text-xl')}>
-			<LogoIcon className='w-12 h-12' />
+			<LogoIcon className='h-12 w-12' />
 			Easy Block
 		</div>
 	)

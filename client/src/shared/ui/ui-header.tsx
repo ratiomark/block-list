@@ -14,7 +14,7 @@ export function UiHeader({
 		<header
 			className={clsx(
 				className,
-				'px-4 py-5 border-b border-b-slate-300 flex justify-between bg-white',
+				'flex justify-between border-b border-b-slate-300 bg-white px-4 py-5',
 			)}>
 			<UiLogo />
 			{right}

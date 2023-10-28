@@ -10,50 +10,22 @@ import { UiLink } from '@/shared/ui/ui-link'
 import { UiSpinner } from '@/shared/ui/ui-spinner'
 import { UiPageSpinner } from '@/shared/ui/ui-page-spinner'
 import { UiHeader } from '@/shared/ui/ui-header'
-
-
+import { SignOutButton } from '@/features/auth'
+import { useSessionQuery } from '@/entities/session'
 
 export function HomePage() {
-	const { data } = useQuery({
-		// на основании этого будет производится кеширование запроса
-		queryKey: ['session'],
-		// функция которая будет запрашивать данные с сервера
-		queryFn: () => authControllerGetSessionInfo(),
-	})
-
-	// useEffect(() => {
-	// 	authControllerSignIn({ email: 'test@gmail.com', password: "1234" })
-	// 		.then(console.log)
-	// }, [])
+	const { data } = useSessionQuery()
 
 	return (
-		<main
-		// className={`flex flex-col`}
-		>
-			<UiHeader right={<div>{data?.email}</div>} />
-			{/* {data?.email} */}
-			{/* <UiPageSpinner /> */}
-			<UiSpinner className='text-rose-600 w-20 h-20' />
-			<UiTextField label='Email' />
-			<UiLink href='/' text='slkfjdsoifjawoiejfw' />
-			<UiSelectField
-				options={[
-					{ value: 'first', label: 'First' },
-					{ value: 'second', label: 'second' },
-				]}
+		<main>
+			<UiHeader
+				right={
+					<div>
+						{data?.email}
+						<SignOutButton />
+					</div>
+				}
 			/>
-			<UiTextField label='Email' />
-			{/* <UiTextField label='Email' error='There is important error' /> */}
-			<UiTextField
-				label='Email'
-				error='There is important error'
-				inputProps={{
-					value: 'test',
-				}}
-			/>
-			<UiButton variant='primary'>Button</UiButton>
-			<UiButton variant='secondary'>Button</UiButton>
-			<UiButton variant='outlined'>Button</UiButton>
 		</main>
 	)
 }

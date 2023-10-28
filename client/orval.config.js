@@ -8,9 +8,9 @@ module.exports = {
 			override: {
 				mutator: {
 					path: './src/shared/api/api-instance.ts',
-					name: 'createInstance'
-				}
-			}
-		}
-	}
+					name: 'createInstance',
+				},
+			},
+		},
+	},
 }

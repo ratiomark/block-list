@@ -1,4 +1,7 @@
 {
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ],
   "singleQuote": true,
   "trailingComma": "all",
   "semi": false,
@@ -8,5 +11,12 @@
   "arrowParens": "always",
   "tabWidth": 2,
   "bracketSpacing": true,
-  "maxLength": 80
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@entities/(.*)$",
+    "^@shared/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

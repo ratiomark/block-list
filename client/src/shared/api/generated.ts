@@ -6,6 +6,7 @@
  */
 import { createInstance } from './api-instance'
 import type { BodyType } from './api-instance'
+
 export type BlockListControllerGetBlockListParams = {
 	q?: string
 }
@@ -148,7 +149,7 @@ export const accountControllerGetAccount = (
 }
 
 export const accountControllerPatch = (
-	accountDto: BodyType<AccountDto>,
+	patchAccountDto: BodyType<PatchAccountDto>,
 	options?: SecondParameter<typeof createInstance>,
 ) => {
 	return createInstance<PatchAccountDto>(
@@ -156,7 +157,7 @@ export const accountControllerPatch = (
 			url: `/account`,
 			method: 'patch',
 			headers: { 'Content-Type': 'application/json' },
-			data: accountDto,
+			data: patchAccountDto,
 		},
 		options,
 	)
