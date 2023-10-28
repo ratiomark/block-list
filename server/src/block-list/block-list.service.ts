@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { AddBlockItemDto, BlockListQueryDto } from './dto';
 import { DbService } from 'src/db/db.service';
+import { AddBlockItemDto, BlockListQueryDto } from './dto';
 // async/await Не всегда необходимо: Если вы просто возвращаете промис и не делаете никаких дополнительных действий после его завершения, то нет необходимости в async / await.Например, в вашем методе create в сервисе async / await не дает реальных преимуществ.
 @Injectable()
 export class BlockListService {
@@ -30,6 +30,10 @@ export class BlockListService {
 
 	async addBlockListItem(data: AddBlockItemDto, userId: number) {
 		const blockList = await this.db.blockList.findUniqueOrThrow({ where: { ownerId: userId } })
+		const itemCheck = await this.db.blockItem.findFirst({ where: { data: data.data, blockListId: blockList.id } })
+		if (itemCheck) {
+			return itemCheck
+		}
 		const item = await this.db.blockItem.create({ data: { blockListId: blockList.id, ...data } })
 		return item
 	}

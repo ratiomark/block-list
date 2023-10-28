@@ -4,15 +4,22 @@ import { UiLink } from '@/shared/ui/ui-link'
 import { useToggleBlocking } from '../model/use-toggle-blocking'
 
 export function ToggleBlockingButton() {
-	const { isBlockingEnabled, isLoading, toggleBlocking } = useToggleBlocking()
+	const {
+		isBlockingEnabled,
+		isReady,
+		isLoading,
+		toggleBlocking,
+	} = useToggleBlocking()
+
+	if (!isReady) return null
 
 	return (
-		<UiLink href='/' text='Toggle Blocking' scroll={false} />
-		// <UiButton
-		// 	onClick={toggleBlocking}
-		// 	variant={isBlockingEnabled ? 'primary' : 'secondary'}
-		// 	disabled={isLoading}>
-		// 	{isBlockingEnabled ? 'Disable Blocking' : 'Enable Blocking'}
-		// </UiButton>
+		<UiButton
+			onClick={toggleBlocking}
+			variant={isBlockingEnabled ? 'secondary' : 'primary'}
+			disabled={isLoading}
+		>
+			{isBlockingEnabled ? 'Disable Blocking' : 'Enable Blocking'}
+		</UiButton>
 	)
 }

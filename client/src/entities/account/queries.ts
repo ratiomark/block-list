@@ -17,6 +17,7 @@ export function useUpdateAccountMutation() {
 	const queryClient = useQueryClient()
 	return useMutation({
 		mutationFn: accountControllerPatch,
+		// https://youtu.be/vrjPzp-bZJo?feature=shared&t=17773
 		// onSettled в отличии от onSuccess вызывается в любом случае, даже если запрос завершился с ошибкой
 		// async/await нужны для того, чтобы запрос на обновление данных прошел до того, как мы обновим кэш, то есть без await мутация может перейти в isLoading = false, а кэш еще не обновится. А когда я ставлю await, то мутация не закончится пока не закочниться инвалидация
 		async onSettled() {

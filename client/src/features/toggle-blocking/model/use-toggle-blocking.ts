@@ -13,8 +13,9 @@ export function useToggleBlocking() {
 	}
 
 	return {
-		isLoading: accountQuery.isLoading || updateAccountMutation.isPending,
+		isLoading: updateAccountMutation.isPending,
 		toggleBlocking,
 		isBlockingEnabled: accountQuery.data?.isBlockingEnabled,
+		isReady: accountQuery.isSuccess,
 	}
 }
